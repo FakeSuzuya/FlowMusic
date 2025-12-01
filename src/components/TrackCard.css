@@ -1,0 +1,255 @@
+/* Card variant */
+.track-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-normal);
+}
+
+.track-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.track-card.playing {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 30px rgba(255, 51, 102, 0.2);
+}
+
+.track-card-cover {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background: var(--bg-tertiary);
+}
+
+.track-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.track-card:hover .track-card-cover img {
+  transform: scale(1.05);
+}
+
+.track-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.track-card:hover .track-card-overlay,
+.track-card.playing .track-card-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--accent-glow);
+  transform: scale(0.8);
+  transition: all var(--transition-fast);
+}
+
+.track-card:hover .play-button,
+.track-card.playing .play-button {
+  transform: scale(1);
+}
+
+.play-button:hover {
+  transform: scale(1.1) !important;
+}
+
+.playing-indicator {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.playing-indicator span {
+  width: 4px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  animation: wave 0.5s ease infinite;
+}
+
+.playing-indicator span:nth-child(1) { height: 10px; animation-delay: 0s; }
+.playing-indicator span:nth-child(2) { height: 16px; animation-delay: 0.15s; }
+.playing-indicator span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+
+.track-card-info {
+  min-width: 0;
+}
+
+.track-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-card-artist {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.track-card:hover .track-card-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+  color: var(--accent-primary);
+  background: var(--bg-tertiary);
+}
+
+/* List variant */
+.track-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.track-list-item:hover {
+  background: var(--bg-card);
+}
+
+.track-list-item.playing {
+  background: rgba(255, 51, 102, 0.1);
+}
+
+.track-list-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  background: var(--bg-tertiary);
+}
+
+.track-list-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-list-play {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.track-list-item:hover .track-list-play,
+.track-list-item.playing .track-list-play {
+  opacity: 1;
+}
+
+.track-list-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-list-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.2rem;
+}
+
+.track-list-item.playing .track-list-title {
+  color: var(--accent-primary);
+}
+
+.track-list-artist {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-list-duration {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-family: 'Space Mono', monospace;
+}
+
+.track-list-actions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.track-list-item:hover .track-list-actions {
+  opacity: 1;
+}
+
+/* Cover placeholder */
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+}
+

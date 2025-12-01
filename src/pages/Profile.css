@@ -1,0 +1,254 @@
+/* Auth required */
+.profile-auth-required {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 3rem;
+  text-align: center;
+  border-radius: var(--radius-lg);
+}
+
+.profile-auth-required svg {
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+}
+
+.profile-auth-required h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-auth-required p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* Profile Header */
+.profile-header {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.profile-cover {
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, rgba(255, 51, 102, 0.4) 0%, rgba(255, 107, 53, 0.3) 50%, rgba(247, 197, 49, 0.2) 100%),
+    radial-gradient(circle at 30% 50%, rgba(255, 51, 102, 0.3) 0%, transparent 50%);
+}
+
+.profile-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0 2rem 2rem;
+  margin-top: -60px;
+  position: relative;
+}
+
+.profile-avatar-section {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 2px solid var(--bg-card);
+  transition: transform var(--transition-fast);
+}
+
+.avatar-edit-btn:hover {
+  transform: scale(1.1);
+}
+
+.profile-info {
+  flex: 1;
+  padding-top: 70px;
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.profile-bio {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  max-width: 500px;
+}
+
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.meta-item svg {
+  color: var(--text-secondary);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 70px;
+}
+
+/* Edit form */
+.profile-edit-form {
+  max-width: 400px;
+}
+
+.profile-name-input {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.profile-bio-input {
+  margin-bottom: 1rem;
+  resize: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Stats */
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Danger Zone */
+.danger-zone {
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  margin-top: 3rem;
+}
+
+.danger-zone h3 {
+  color: #ef4444;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.danger-zone p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.danger-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.danger-btn {
+  color: #ef4444;
+}
+
+.danger-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .profile-info {
+    padding-top: 1rem;
+  }
+  
+  .profile-meta {
+    justify-content: center;
+  }
+  
+  .profile-actions {
+    padding-top: 0;
+    margin-top: 1rem;
+  }
+  
+  .profile-stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .danger-actions {
+    flex-direction: column;
+  }
+}
+
