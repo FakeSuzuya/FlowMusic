@@ -4,14 +4,143 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FlowMusic - Votre musique, votre communauté</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="FlowMusic - Plateforme de streaming et partage musical. Découvrez, partagez et écoutez de la musique." />
+    <meta name="keywords" content="musique, streaming, artistes, audio, partage, upload, écouter" />
+    <meta name="author" content="FlowMusic" />
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FlowMusic - Découvrez la musique autrement" />
+    <meta property="og:description" content="Partagez vos créations, découvrez de nouveaux artistes et rejoignez une communauté passionnée de musique." />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#050508" />
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <title>FlowMusic - Découvrez la musique autrement</title>
+    
+    <style>
+      /* Critical CSS for initial load */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        background: #050508;
+      }
+      
+      body {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #050508;
+        color: #ffffff;
+        min-height: 100vh;
+      }
+      
+      /* Loading screen */
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #050508;
+        z-index: 9999;
+        gap: 2rem;
+      }
+      
+      .loader-logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff2d75, #7c3aed, #06b6d4);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s ease-in-out infinite;
+        box-shadow: 0 0 60px rgba(255, 45, 117, 0.4);
+      }
+      
+      .loader-logo svg {
+        width: 40px;
+        height: 40px;
+        color: white;
+      }
+      
+      .loader-text {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      
+      .loader-text span {
+        background: linear-gradient(135deg, #ff2d75, #7c3aed, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .loader-spinner {
+        display: flex;
+        gap: 8px;
+      }
+      
+      .loader-spinner span {
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(135deg, #ff2d75, #7c3aed);
+        border-radius: 50%;
+        animation: bounce 1.4s infinite;
+      }
+      
+      .loader-spinner span:nth-child(2) { animation-delay: 0.2s; }
+      .loader-spinner span:nth-child(3) { animation-delay: 0.4s; }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+      }
+      
+      #root:not(:empty) + #app-loader {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Loading screen -->
+    <div id="app-loader">
+      <div class="loader-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+      </div>
+      <div class="loader-text">Flow<span>Music</span></div>
+      <div class="loader-spinner">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-

@@ -9,8 +9,27 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:5000',
         changeOrigin: true
+      },
+      '/uploads': {
+        target: 'http://localhost:5000',
+        changeOrigin: true
       }
     }
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          icons: ['lucide-react']
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
   }
 })
-

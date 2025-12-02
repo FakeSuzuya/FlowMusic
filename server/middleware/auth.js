@@ -1,17 +1,20 @@
 import jwt from 'jsonwebtoken'
-
-const JWT_SECRET = process.env.JWT_SECRET || 'flowmusic_secret_key_2024'
+import config from '../config.js'
 
 export function generateToken(user) {
   return jwt.sign(
-    { id: user.id, email: user.email },
-    JWT_SECRET,
-    { expiresIn: '7d' }
+    { 
+      id: user.id, 
+      email: user.email,
+      username: user.username 
+    },
+    config.jwt.secret,
+    { expiresIn: config.jwt.expiresIn }
   )
 }
 
 export function verifyToken(token) {
-  return jwt.verify(token, JWT_SECRET)
+  return jwt.verify(token, config.jwt.secret)
 }
 
 export function authMiddleware(req, res, next) {
@@ -19,16 +22,32 @@ export function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ message: 'Token manquant' })
+      return res.status(401).json({ message: 'Token d\'authentification manquant' })
     }
 
     const token = authHeader.split(' ')[1]
+    
+    if (!token || token === 'null' || token === 'undefined') {
+      return res.status(401).json({ message: 'Token invalide' })
+    }
+    
     const decoded = verifyToken(token)
+    
+    // Vérifier que le token contient les informations nécessaires
+    if (!decoded.id) {
+      return res.status(401).json({ message: 'Token invalide' })
+    }
     
     req.user = decoded
     next()
   } catch (error) {
-    return res.status(401).json({ message: 'Token invalide ou expiré' })
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'Session expirée, veuillez vous reconnecter' })
+    }
+    if (error.name === 'JsonWebTokenError') {
+      return res.status(401).json({ message: 'Token invalide' })
+    }
+    return res.status(401).json({ message: 'Erreur d\'authentification' })
   }
 }
 
@@ -38,13 +57,18 @@ export function optionalAuth(req, res, next) {
     
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const token = authHeader.split(' ')[1]
-      const decoded = verifyToken(token)
-      req.user = decoded
+      
+      if (token && token !== 'null' && token !== 'undefined') {
+        const decoded = verifyToken(token)
+        if (decoded.id) {
+          req.user = decoded
+        }
+      }
     }
     
     next()
   } catch (error) {
+    // En mode optionnel, on continue sans authentification en cas d'erreur
     next()
   }
 }
-
